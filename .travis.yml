@@ -1,0 +1,11 @@
+# Fichier : .travis.yml
+language: node_js      # On dit à Travis que c'est un projet Node.js
+
+node_js:               # On lui dit quelles versions de Node tester
+  - "18"               # On va tester sur la version 18
+
+install:               # Étape d'installation
+  - npm install        # Il va lancer "npm install"
+
+script:                # Étape de test
+  - npm test           # Il va lancer "npm test" (qui exécute Jest)
