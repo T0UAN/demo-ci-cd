@@ -1,0 +1,28 @@
+# Fichier : .circleci/config.yml
+version: 2.1  # Toujours commencer par la version de l'API CircleCI
+
+# Les "Jobs" sont les unités de travail
+jobs:
+  build_and_test: # On invente un nom pour notre job
+
+    # "Executor" : L'environnement où le job va tourner
+    docker:
+      - image: cimg/node:18.17.1 # On choisit une image Docker avec Node.js 18
+
+    # "Steps" : Les étapes à exécuter
+    steps:
+      - checkout # Étape 1 : Récupérer le code du dépôt
+
+      - run: # Étape 2 : Installer les dépendances
+          name: "Installation des dépendances npm"
+          command: "npm install"
+
+      - run: # Étape 3 : Lancer les tests
+          name: "Exécution des tests"
+          command: "npm test"
+
+# Les "Workflows" orchestrent les "Jobs"
+workflows:
+  mon_workflow: # On invente un nom pour notre workflow
+    jobs:
+      - build_and_test # On dit au workflow de lancer notre job "build_and_test"
